@@ -5,8 +5,12 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -17,9 +21,8 @@ import java.time.LocalDate;
 public class ItemEletrico {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_ID_ITEM")
-    @SequenceGenerator(name = "GEN_ID_ITEM", sequenceName = "GEN_ID_ITEM", allocationSize = 1)
-    @Column(name = "ID_ITEM")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_ID_ITEM_ELETRICO")
+    @SequenceGenerator(name = "GEN_ID_ITEM_ELETRICO", sequenceName = "GEN_ID_ITEM_ELETRICO", allocationSize = 1)
     private Long idItemEletrico;
 
     @ManyToOne()
@@ -29,7 +32,7 @@ public class ItemEletrico {
     @Column(name = "NOME_ITEM")
     private String nome;
 
-    @Column(name = "CONSUMO_KWH")
+    @Column(name = "CONSUMO_KW")
     private Double consumoEmKw;
 
     @Column(name = "DT_USO")
