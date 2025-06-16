@@ -49,7 +49,7 @@ namespace CarbonNowAPI.Controller {
         [Authorize(Policy = "Normal")]
         [HttpGet]
         public async Task<ActionResult<Paginacao<UsuarioExibicaoViewModel>>> ListarTodosUsuarios() {
-            return Ok(await _usuarioService.ListarUsuarios());
+            return Ok(_mapper.Map<List<UsuarioExibicaoViewModel>>(await _usuarioService.ListarUsuarios()));
         }
 
         [Authorize(Policy = "Normal")]
