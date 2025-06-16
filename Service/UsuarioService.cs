@@ -90,12 +90,12 @@ namespace CarbonNowAPI.Service {
             await _repository.SalvarContext();
         }
 
-        public async Task<PaginacaoViewModel<Usuario>> ListarUsuarios(int pagina, int tamanho, string baseUrl) {
+        public async Task<Paginacao<Usuario>> ListarUsuarios(int pagina, int tamanho, string baseUrl) {
             var (usuarios, total) = await _repository.ListarUsuarios(pagina, tamanho);
 
             string BuildUrl(int p) => $"{baseUrl}?pagina={p}&tamanho={tamanho}";
 
-            return new PaginacaoViewModel<Usuario> {
+            return new Paginacao<Usuario> {
                 PaginaAtual = pagina,
                 TamanhoPagina = tamanho,
                 TotalItens = total,

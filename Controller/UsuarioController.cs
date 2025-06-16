@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarbonNowAPI.Controller {
 
-    [ApiVersion(1, Deprecated = true)]
-    [ApiVersion(2)]
+    [ApiVersion(1.0, Deprecated = true)]
+    [ApiVersion(1.1)]
     [ApiController]
     [Route("api/v{v:apiVersion}/[controller]")]
     [Authorize]
@@ -24,16 +24,16 @@ namespace CarbonNowAPI.Controller {
             _usuarioService = usuarioService;
         }
 
-        [MapToApiVersion(2.0)]
+        [MapToApiVersion(1.1)]
         [Authorize(Policy = "Normal")]
         [HttpGet]
-        public async Task<ActionResult<PaginacaoViewModel<UsuarioExibicaoViewModel>>> ListarTodosUsuarios([FromQuery] int pagina = 1, [FromQuery] int tamanho = 20) {
+        public async Task<ActionResult<Paginacao<UsuarioExibicaoViewModel>>> ListarTodosUsuarios([FromQuery] int pagina = 1, [FromQuery] int tamanho = 20) {
 
             var baseUrl = $"{Request.Scheme}://{Request.Host}{Request.Path}";
 
             var resultado = await _usuarioService.ListarUsuarios(pagina, tamanho, baseUrl);
 
-            var usuarios = new PaginacaoViewModel<UsuarioExibicaoViewModel> {
+            var usuarios = new Paginacao<UsuarioExibicaoViewModel> {
                 PaginaAtual = resultado.PaginaAtual,
                 TamanhoPagina = resultado.TamanhoPagina,
                 TotalItens = resultado.TotalItens,
@@ -48,7 +48,7 @@ namespace CarbonNowAPI.Controller {
         [MapToApiVersion(1.0)]
         [Authorize(Policy = "Normal")]
         [HttpGet]
-        public async Task<ActionResult<PaginacaoViewModel<UsuarioExibicaoViewModel>>> ListarTodosUsuarios() {
+        public async Task<ActionResult<Paginacao<UsuarioExibicaoViewModel>>> ListarTodosUsuarios() {
             return Ok(await _usuarioService.ListarUsuarios());
         }
 

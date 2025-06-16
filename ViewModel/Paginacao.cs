@@ -1,5 +1,5 @@
 ﻿namespace CarbonNowAPI.ViewModel {
-    public class PaginacaoViewModel<T> {
+    public class Paginacao<T> {
         public int PaginaAtual { get; set; }
         public int TamanhoPagina { get; set; }
         public IEnumerable<T> Itens { get; set; }

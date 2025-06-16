@@ -5,6 +5,7 @@
         public string Email { get; set; }
         public string Senha { get; set; }
         public Regra Regra { get; set; }
+        public List<Eletricidade> Eletricidade { get; set; } = new();
     }
 
     public enum Regra {

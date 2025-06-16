@@ -5,7 +5,7 @@ using CarbonNowAPI.ViewModel.Usuario;
 namespace CarbonNowAPI.Service {
     public interface IUsuarioService {
         Task<string> Login(Usuario usuario);
-        Task<PaginacaoViewModel<Usuario>> ListarUsuarios(int pagina, int tamanho, string baseUrl);
+        Task<Paginacao<Usuario>> ListarUsuarios(int pagina, int tamanho, string baseUrl);
         Task<IEnumerable<Usuario>> ListarUsuarios();
         Task<Usuario> BuscarPorId(int id);
         Task<Usuario> BuscarPorEmail(string email);

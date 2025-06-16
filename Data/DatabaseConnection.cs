@@ -21,9 +21,9 @@ namespace CarbonNowAPI.Data {
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);
 
-            //modelBuilder.HasSequence<int>("SEQ_ID_ELETRICIDADE")
-            //    .StartsAt(1)
-            //    .IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_ID_ELETRICIDADE")
+                .StartsAt(1)
+                .IncrementsBy(1);
 
             //modelBuilder.HasSequence<int>("SEQ_ID_TRANSPORTE")
             //    .StartsAt(1)
@@ -34,9 +34,11 @@ namespace CarbonNowAPI.Data {
                 .IncrementsBy(1);
 
             modelBuilder.ApplyConfiguration(new UsuarioConfig());
+            modelBuilder.ApplyConfiguration(new EletricidadeConfig());
 
         }
         public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Eletricidade> Eletricidade { get; set; }
 
     }
 }
