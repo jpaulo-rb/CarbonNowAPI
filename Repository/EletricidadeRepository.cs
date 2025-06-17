@@ -56,13 +56,21 @@ namespace CarbonNowAPI.Repository {
 
         public async Task SalvarContext() {
             await _context.SaveChangesAsync();
-        }        
+        }
 
         public async Task<bool> EletricidadeExiste(int id) {
             return await _context.Eletricidade
                 .Where(e => e.Id == id)
                 .Select(e => 1)
                 .FirstOrDefaultAsync() == 1;
+        }
+
+        public async Task<IEnumerable<Eletricidade>> BuscarPorUsuario(int id) {
+            return await _context.Eletricidade
+                .AsNoTracking()
+                .Where(e => e.UsuarioId == id)
+                .OrderBy(e => e.Id)
+                .ToListAsync();
         }
     }
 }

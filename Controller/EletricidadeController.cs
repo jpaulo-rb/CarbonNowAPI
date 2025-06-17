@@ -34,7 +34,7 @@ namespace CarbonNowAPI.Controller {
 
             var resultado = await _eletricidadeService.ListarEletricidades(pagina, tamanho, baseUrl);
 
-            var Eletricidades = new Paginacao<EletricidadeViewModel> {
+            var eletricidades = new Paginacao<EletricidadeViewModel> {
                 PaginaAtual = resultado.PaginaAtual,
                 TamanhoPagina = resultado.TamanhoPagina,
                 TotalItens = resultado.TotalItens,
@@ -43,7 +43,7 @@ namespace CarbonNowAPI.Controller {
                 PaginaAnteriorUrl = resultado.PaginaAnteriorUrl
             };
 
-            return Ok(Eletricidades);
+            return Ok(eletricidades);
         }
 
         [MapToApiVersion(1.0)]
@@ -57,8 +57,8 @@ namespace CarbonNowAPI.Controller {
         [HttpGet("{id}")]
         public async Task<ActionResult<EletricidadeViewModel>> BuscarEletricidadePorId(int id) {
 
-            var Eletricidade = await _eletricidadeService.BuscarPorId(id);
-            return Ok(_mapper.Map<EletricidadeViewModel>(Eletricidade));
+            var eletricidade = await _eletricidadeService.BuscarPorId(id);
+            return Ok(_mapper.Map<EletricidadeViewModel>(eletricidade));
         }
 
         [Authorize(Policy = "Normal")]
@@ -69,8 +69,8 @@ namespace CarbonNowAPI.Controller {
                 return BadRequest("Data final menor que a data inicial.");
             }
 
-            var Eletricidade = await _eletricidadeService.BuscarPorData(inicio.ToDateTime(TimeOnly.MinValue), fim.ToDateTime(TimeOnly.MinValue));
-            return Ok(_mapper.Map<List<EletricidadeViewModel>>(Eletricidade));
+            var eletricidade = await _eletricidadeService.BuscarPorData(inicio.ToDateTime(TimeOnly.MinValue), fim.ToDateTime(TimeOnly.MinValue));
+            return Ok(_mapper.Map<List<EletricidadeViewModel>>(eletricidade));
         }
 
         [Authorize(Policy = "Admin")]
@@ -85,15 +85,7 @@ namespace CarbonNowAPI.Controller {
                 return BadRequest("ID da eletricidade na URL difere do ID enviado.");
             }
 
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
-
-            if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out int usuarioId)) {
-                return Unauthorized("Usuário não autenticado.");
-            }
-
             var electricity = _mapper.Map<Eletricidade>(eletricidade);
-
-            electricity.UsuarioId = usuarioId;
 
             await _eletricidadeService.Editar(electricity);
             return NoContent();
@@ -129,6 +121,13 @@ namespace CarbonNowAPI.Controller {
             await _eletricidadeService.Deletar(id);
             return NoContent();
 
+        }
+
+
+        [Authorize(Policy = "Normal")]
+        [HttpGet("usuario/{id}")]
+        public async Task<IActionResult> BuscarEletricidadePorUsuario(int id) {
+            return Ok(_mapper.Map<List<EletricidadeViewModel>>(await _eletricidadeService.BuscarPorUsuario(id)));
         }
     }
 }

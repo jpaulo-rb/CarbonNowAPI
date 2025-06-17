@@ -87,6 +87,9 @@ builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
 builder.Services.AddScoped<IEletricidadeRepository, EletricidadeRepository>();
 builder.Services.AddScoped<IEletricidadeService, EletricidadeService>();
+
+builder.Services.AddScoped<ITransporteRepository, TransporteRepository>();
+builder.Services.AddScoped<ITransporteService, TransporteService>();
 #endregion
 
 // Configuração necessária para utilizar JWT

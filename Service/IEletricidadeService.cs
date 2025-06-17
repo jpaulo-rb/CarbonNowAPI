@@ -10,5 +10,6 @@ namespace CarbonNowAPI.Service {
         Task Adicionar(Eletricidade eletricidade);
         Task Editar(Eletricidade eletricidade);
         Task Deletar(int id);
+        Task<IEnumerable<Eletricidade>> BuscarPorUsuario(int id);
     }
 }

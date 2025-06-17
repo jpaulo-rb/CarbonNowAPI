@@ -11,5 +11,6 @@ namespace CarbonNowAPI.Repository {
         void Deletar(Eletricidade eletricidade);
         Task SalvarContext();
         Task<bool> EletricidadeExiste(int id);
+        Task<IEnumerable<Eletricidade>> BuscarPorUsuario(int id);
     }
 }

@@ -38,6 +38,15 @@ namespace CarbonNowAPI.Service {
             return eletricidade;
         }
 
+        public async Task<IEnumerable<Eletricidade>> BuscarPorUsuario(int id) {
+
+            if (!await _usuarioRepository.UsuarioExiste(id)) {
+                throw new NotFoundException("UsuarioID", id.ToString());
+            };
+
+            return await _repository.BuscarPorUsuario(id);
+        }
+
         public async Task Deletar(int id) {
             var eletricidade = await _repository.BuscarPorId(id);
 

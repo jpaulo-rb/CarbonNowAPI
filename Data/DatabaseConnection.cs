@@ -25,9 +25,9 @@ namespace CarbonNowAPI.Data {
                 .StartsAt(1)
                 .IncrementsBy(1);
 
-            //modelBuilder.HasSequence<int>("SEQ_ID_TRANSPORTE")
-            //    .StartsAt(1)
-            //    .IncrementsBy(1);
+            modelBuilder.HasSequence<int>("SEQ_ID_TRANSPORTE")
+                .StartsAt(1)
+                .IncrementsBy(1);
 
             modelBuilder.HasSequence<int>("SEQ_ID_USUARIO")
                 .StartsAt(1)
@@ -35,10 +35,12 @@ namespace CarbonNowAPI.Data {
 
             modelBuilder.ApplyConfiguration(new UsuarioConfig());
             modelBuilder.ApplyConfiguration(new EletricidadeConfig());
+            modelBuilder.ApplyConfiguration(new TransporteConfig());
 
         }
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Eletricidade> Eletricidade { get; set; }
+        public DbSet<Transporte> Transporte { get; set; }
 
     }
 }

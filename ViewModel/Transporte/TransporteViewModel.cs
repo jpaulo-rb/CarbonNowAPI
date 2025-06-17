@@ -1,17 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using CarbonNowAPI.Model;
 
-namespace CarbonNowAPI.ViewModel.Eletricidade {
-    public class EletricidadeViewModel {
+namespace CarbonNowAPI.ViewModel.Transporte {
+    public class TransporteViewModel {
 
         [Required]
         public int Id { get; set; }
 
         [Required]
-        public UnidadeEletricidade UnidadeEletricidade { get; set; }
+        public decimal ValorPesoKg { get; set; }
 
         [Required]
-        public decimal ValorEletricidade { get; set; }
+        public decimal ValorDistanciaKm { get; set; }
+
+        [Required]
+        public MetodoTransporte MetodoTransporte { get; set; }
 
         [Required]
         public DateOnly DataEstimacao { get; set; }
