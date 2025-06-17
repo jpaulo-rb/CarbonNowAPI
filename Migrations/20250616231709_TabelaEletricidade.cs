@@ -21,7 +21,7 @@ namespace CarbonNowAPI.Migrations
                     Id = table.Column<int>(type: "NUMBER(10)", nullable: false, defaultValueSql: "SEQ_ID_ELETRICIDADE.NEXTVAL"),
                     UnidadeEletricidade = table.Column<string>(type: "NVARCHAR2(3)", maxLength: 3, nullable: false, defaultValueSql: "'KWH'"),
                     ValorEletricidade = table.Column<decimal>(type: "NUMBER(18,2)", nullable: false),
-                    DataEstimacao = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false, defaultValueSql: "SYSDATE"),
+                    DataEstimacao = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false, defaultValueSql: "TRUNC(SYSDATE)"),
                     CarbonoKg = table.Column<decimal>(type: "NUMBER(18,2)", nullable: false),
                     UsuarioId = table.Column<int>(type: "NUMBER(10)", nullable: false)
                 },

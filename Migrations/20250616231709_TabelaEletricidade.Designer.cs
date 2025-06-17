@@ -12,7 +12,7 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace CarbonNowAPI.Migrations
 {
     [DbContext(typeof(DatabaseConnection))]
-    [Migration("20250616163950_TabelaEletricidade")]
+    [Migration("20250616231709_TabelaEletricidade")]
     partial class TabelaEletricidade
     {
         /// <inheritdoc />
@@ -42,7 +42,7 @@ namespace CarbonNowAPI.Migrations
                     b.Property<DateTime>("DataEstimacao")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TIMESTAMP(7)")
-                        .HasDefaultValueSql("SYSDATE");
+                        .HasDefaultValueSql("TRUNC(SYSDATE)");
 
                     b.Property<string>("UnidadeEletricidade")
                         .IsRequired()

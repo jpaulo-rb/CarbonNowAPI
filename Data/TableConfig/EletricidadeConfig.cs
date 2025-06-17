@@ -22,7 +22,7 @@ namespace CarbonNowAPI.Data.TableConfig {
                 .HasMaxLength(3);
 
             entity.Property(e => e.DataEstimacao)
-                .HasDefaultValueSql("SYSDATE");
+                .HasDefaultValueSql("TRUNC(SYSDATE)");
 
             entity.Property(e => e.ValorEletricidade).HasColumnType("NUMBER(18,2)");
             entity.Property(e => e.CarbonoKg).HasColumnType("NUMBER(18,2)");

@@ -12,6 +12,9 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configuração para a rota [controller] ficar minuscula
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
 builder.Services.AddControllers()    
     // Configuração para enums serem passados como string
     .AddJsonOptions(options => {
@@ -81,6 +84,9 @@ builder.Services.AddScoped<TokenJWT>();
 
 builder.Services.AddScoped<IUsuarioRepository,UsuarioRepository>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+
+builder.Services.AddScoped<IEletricidadeRepository, EletricidadeRepository>();
+builder.Services.AddScoped<IEletricidadeService, EletricidadeService>();
 #endregion
 
 // Configuração necessária para utilizar JWT

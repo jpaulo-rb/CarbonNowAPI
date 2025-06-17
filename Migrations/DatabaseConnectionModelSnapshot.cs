@@ -39,7 +39,7 @@ namespace CarbonNowAPI.Migrations
                     b.Property<DateTime>("DataEstimacao")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TIMESTAMP(7)")
-                        .HasDefaultValueSql("SYSDATE");
+                        .HasDefaultValueSql("TRUNC(SYSDATE)");
 
                     b.Property<string>("UnidadeEletricidade")
                         .IsRequired()
